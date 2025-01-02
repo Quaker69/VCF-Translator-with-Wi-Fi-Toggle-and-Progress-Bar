@@ -60,8 +60,8 @@ def modify_vcf_with_progress_and_wifi(input_path, output_path):
         outfile.writelines(output_lines)
 
 # Input and output file paths
-input_vcf_path = 'C:/Users/AVINASH/Contacts.vcf'
-output_vcf_path = 'C:/Users/AVINASH/Contacts2.vcf'
+input_vcf_path = 'in_put_file_path.vcf' # enter your input file path
+output_vcf_path = 'out_put_file_path.vcf' # enter your output file path
 
 # Run the process
 try:
