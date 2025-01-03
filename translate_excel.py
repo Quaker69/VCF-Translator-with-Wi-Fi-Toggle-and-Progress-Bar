@@ -4,7 +4,7 @@ from googletrans import Translator
 from time import sleep
 from tqdm import tqdm
 
-# Function to translate text from English to Kannada with retry and Wi-Fi toggle mechanism
+
 def translate_to_kannada_with_wifi_toggle(text, retries=3):
     translator = Translator()
     attempt = 0
@@ -13,13 +13,13 @@ def translate_to_kannada_with_wifi_toggle(text, retries=3):
             return translator.translate(text, src='en', dest='kn').text
         except Exception as e:
             print(f"Translation failed: {e}. Retrying...")
-            toggle_wifi()  # Toggle Wi-Fi on failure
-            sleep(2)  # Wait 2 seconds before retrying
+            toggle_wifi()  
+            sleep(2)  
             attempt += 1
     print(f"Failed to translate: {text}. Returning original text.")
-    return text  # Return original text if translation fails
+    return text 
 
-# Function to toggle Wi-Fi (platform-specific)
+
 def toggle_wifi():
     system = platform.system()
     if system == "Windows":
@@ -30,14 +30,14 @@ def toggle_wifi():
         os.system("nmcli radio wifi off")
         sleep(1)
         os.system("nmcli radio wifi on")
-    elif system == "Darwin":  # macOS
+    elif system == "Darwin":  
         os.system("networksetup -setairportpower airport off")
         sleep(1)
         os.system("networksetup -setairportpower airport on")
     else:
         print("Wi-Fi toggle not supported on this operating system.")
 
-# Function to modify VCF fields for version 2.1 with progress bar
+
 def modify_vcf_with_progress_and_wifi(input_path, output_path):
     with open(input_path, 'r', encoding='utf-8') as infile:
         lines = infile.readlines()
@@ -59,11 +59,11 @@ def modify_vcf_with_progress_and_wifi(input_path, output_path):
     with open(output_path, 'w', encoding='utf-8') as outfile:
         outfile.writelines(output_lines)
 
-# Input and output file paths
+
 input_vcf_path = 'in_put_file_path.vcf' # enter your input file path
 output_vcf_path = 'out_put_file_path.vcf' # enter your output file path
 
-# Run the process
+
 try:
     modify_vcf_with_progress_and_wifi(input_vcf_path, output_vcf_path)
     print(f"Modified VCF (version 2.1) saved to {output_vcf_path}")
